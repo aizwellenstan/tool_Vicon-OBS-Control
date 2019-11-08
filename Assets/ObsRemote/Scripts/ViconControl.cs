@@ -25,8 +25,9 @@ public class ViconControl : MonoBehaviour
         }
     }
 
-    public string SubjectName { set { subjectName = value; } }
-    [SerializeField] string subjectName = "ViconTest";
+    public string SubjectName { set { subjectNamePrefix = value; } }
+    [SerializeField] string subjectNamePrefix = "ViconTest";
+    string subjectName;
     public string Notes { set { notes = value; } }
     [SerializeField] string notes = "";
     public string Description { set { description = value; } }
@@ -40,11 +41,15 @@ public class ViconControl : MonoBehaviour
 
     public void SendStartCapture()
     {
+        packetId = Random.Range(0, int.MaxValue);
+        var now = System.DateTime.Now;
+        subjectName = $"{subjectNamePrefix}_{now.Year}_{now.Month.ToString("00")}{now.Day.ToString("00")}_{now.Hour.ToString("00")}{now.Minute.ToString("00")}";
         SendText(CreateStartCaptureXML());
     }
 
     public void SendStopCapture()
     {
+        packetId = Random.Range(0, int.MaxValue);
         SendText(CreateStopCaptureXML());
     }
 
@@ -81,7 +86,6 @@ public class ViconControl : MonoBehaviour
         childNode = doc.CreateElement("PacketID");
         childNode.SetAttribute("VALUE", packetId.ToString());
         rootNode.AppendChild(childNode);
-        packetId++;
 
         return doc.OuterXml;
     }
@@ -110,7 +114,6 @@ public class ViconControl : MonoBehaviour
         childNode = doc.CreateElement("PacketID");
         childNode.SetAttribute("VALUE", packetId.ToString());
         rootNode.AppendChild(childNode);
-        packetId++;
 
         return doc.OuterXml;
     }

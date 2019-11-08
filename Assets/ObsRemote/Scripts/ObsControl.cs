@@ -65,11 +65,14 @@ public class ObsControl : MonoBehaviour
             obs.Disconnect();
     }
 
-    public void OnStartRecordingButton() {
-        obs.StartRecording();
+    public void OnStartRecordingButton()
+    {
+        if (obs.IsConnected)
+            obs.StartRecording();
     }
     public void OnStopRecordingButton()
     {
-        obs.StopRecording();
+        if (obs.IsConnected)
+            obs.StopRecording();
     }
 }
