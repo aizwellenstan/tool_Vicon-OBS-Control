@@ -7754,6 +7754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e97513a370a9aa4eb2d85e8c6118e95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  viconControl: {fileID: 1669615361}
   remoteIp: localhost
   remotePort: 4444
   password: 

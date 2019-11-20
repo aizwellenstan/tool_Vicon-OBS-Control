@@ -1,5 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.IO;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +12,8 @@ using OBSWebsocketDotNet.Types;
 //https://github.com/Palakis/obs-websocket-dotnet/blob/master/TestClient/MainWindow.cs
 public class ObsControl : MonoBehaviour
 {
+    public ViconControl viconControl;
+
     public string RemoteIP { get { return remoteIp; } set { remoteIp = value; } }
     [SerializeField] string remoteIp = "localhost";
     public string RemotePort { get { return remotePort.ToString(); } set { remotePort = int.Parse(value); } }
@@ -74,5 +79,17 @@ public class ObsControl : MonoBehaviour
     {
         if (obs.IsConnected)
             obs.StopRecording();
+        RenameRecordedFile();
+    }
+    public void RenameRecordedFile()
+    {
+        var recordingFolder = obs.GetRecordingFolder();
+        Thread.Sleep(2000);
+        var files = Directory.GetFiles(recordingFolder);
+        var latestFile = files.OrderBy(f => File.GetCreationTime(f)).Last();
+        var directoryName = Path.GetDirectoryName(latestFile);
+        var fileName = Path.GetFileName(latestFile);
+        fileName = viconControl.SubjectName + fileName;
+        File.Move(latestFile, Path.Combine(directoryName, fileName));
     }
 }
