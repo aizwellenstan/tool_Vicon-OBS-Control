@@ -9,12 +9,12 @@ using OBSWebsocketDotNet.Types;
 //https://github.com/Palakis/obs-websocket-dotnet/blob/master/TestClient/MainWindow.cs
 public class ObsControl : MonoBehaviour
 {
-    public string RemoteIP { set { remoteIp = value; } }
+    public string RemoteIP { get { return remoteIp; } set { remoteIp = value; } }
     [SerializeField] string remoteIp = "localhost";
-    public string RemotePort { set { remotePort = int.Parse(value); } }
+    public string RemotePort { get { return remotePort.ToString(); } set { remotePort = int.Parse(value); } }
     [SerializeField] int remotePort = 4444;
     string url { get { return $"ws://{remoteIp}:{remotePort}"; } }
-    public string Password { set { password = value; } }
+    public string Password { get { return password; } set { password = value; } }
     [SerializeField] string password;
 
     [Header("UI Settings")]

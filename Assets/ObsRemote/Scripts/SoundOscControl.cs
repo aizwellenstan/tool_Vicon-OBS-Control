@@ -9,6 +9,7 @@ public class SoundOscControl : MonoBehaviour
     public UdpSender sender;
     public string RemoteIP
     {
+        get { return sender.remoteIp; }
         set
         {
             if (sender.remoteIp != value)
@@ -17,6 +18,7 @@ public class SoundOscControl : MonoBehaviour
     }
     public string RemotePort
     {
+        get { return sender.remotePort.ToString(); }
         set
         {
             var newPort = int.Parse(value);
@@ -24,9 +26,9 @@ public class SoundOscControl : MonoBehaviour
                 sender.CreateRemoteEP(sender.remoteIp, newPort);
         }
     }
-    public string CutName { set { CutName = value; } }
+    public string CutName { get { return cutName; } set { cutName = value; } }
     [SerializeField] string cutName = "C1";
-    public string Delay { set { delay = int.Parse(value); } }
+    public string Delay { get { return delay.ToString(); } set { delay = int.Parse(value); } }
     [SerializeField] int delay;
 
     public void SendStart()

@@ -10,6 +10,7 @@ public class ViconControl : MonoBehaviour
     public UdpSender sender2;
     public string RemoteIP
     {
+        get { return sender.remoteIp; }
         set
         {
             if (sender.remoteIp != value)
@@ -18,6 +19,7 @@ public class ViconControl : MonoBehaviour
     }
     public string RemotePort
     {
+        get { return sender.remotePort.ToString(); }
         set
         {
             var newPort = int.Parse(value);
@@ -27,6 +29,7 @@ public class ViconControl : MonoBehaviour
     }
     public string RemoteIP2
     {
+        get { return sender2.remoteIp; }
         set
         {
             if (sender2.remoteIp != value)
@@ -35,6 +38,7 @@ public class ViconControl : MonoBehaviour
     }
     public string RemotePort2
     {
+        get { return sender2.remotePort.ToString(); }
         set
         {
             var newPort = int.Parse(value);
@@ -43,17 +47,19 @@ public class ViconControl : MonoBehaviour
         }
     }
 
-    public string SubjectName { set { subjectNamePrefix = value; } }
+    public string SubjectName { get { return subjectNamePrefix; } set { subjectNamePrefix = value; } }
     [SerializeField] string subjectNamePrefix = "ViconTest";
     string subjectName;
-    public string Notes { set { notes = value; } }
+    public string Notes { get { return notes; } set { notes = value; } }
     [SerializeField] string notes = "";
-    public string Description { set { description = value; } }
+    public string Description { get { return description; } set { description = value; } }
     [SerializeField] string description = "";
-    public string DbPath { set { dbPath = value; } }
+    public string DbPath { get { return dbPath; } set { dbPath = value; } }
     [SerializeField] string dbPath = "D:\\ViconDB\\Reflap\\Project 2\\Gene\\Session 1\\";
-    public string Delay { set { delay = int.Parse(value); } }
+    public string Delay { get { return delay.ToString(); }  set { delay = int.Parse(value); } }
     [SerializeField] int delay = 0;
+    public bool UseSecondIP { get { return useSecondIP; } set { useSecondIP = value; } }
+    [SerializeField] bool useSecondIP;
 
     [SerializeField] int packetId = 0;
 
@@ -139,6 +145,7 @@ public class ViconControl : MonoBehaviour
     void SendText(string text)
     {
         sender.Send(text);
-        sender2.Send(text);
+        if (useSecondIP)
+            sender2.Send(text);
     }
 }
