@@ -7,6 +7,7 @@ using System.Xml;
 public class ViconControl : MonoBehaviour
 {
     public UdpSender sender;
+    public UdpSender sender2;
     public string RemoteIP
     {
         set
@@ -22,6 +23,23 @@ public class ViconControl : MonoBehaviour
             var newPort = int.Parse(value);
             if (sender.remotePort != newPort)
                 sender.CreateRemoteEP(sender.remoteIp, newPort);
+        }
+    }
+    public string RemoteIP2
+    {
+        set
+        {
+            if (sender2.remoteIp != value)
+                sender2.CreateRemoteEP(value, sender2.remotePort);
+        }
+    }
+    public string RemotePort2
+    {
+        set
+        {
+            var newPort = int.Parse(value);
+            if (sender2.remotePort != newPort)
+                sender2.CreateRemoteEP(sender2.remoteIp, newPort);
         }
     }
 
@@ -121,5 +139,6 @@ public class ViconControl : MonoBehaviour
     void SendText(string text)
     {
         sender.Send(text);
+        sender2.Send(text);
     }
 }
