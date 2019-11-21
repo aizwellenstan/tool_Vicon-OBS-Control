@@ -367,6 +367,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1669615364}
+        m_MethodName: OnObsStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &38042405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1850,6 +1861,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1669615359}
         m_MethodName: OnStopRecordingButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1669615364}
+        m_MethodName: OnStopButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4244,6 +4266,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1669615364}
+        m_MethodName: OnAllStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &720288349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5796,6 +5829,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1669615364}
+        m_MethodName: OnStopButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1174702680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7041,6 +7085,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1669615364}
+        m_MethodName: OnSoundStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1444238304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7735,6 +7790,7 @@ GameObject:
   - component: {fileID: 1669615361}
   - component: {fileID: 1669615362}
   - component: {fileID: 1669615363}
+  - component: {fileID: 1669615364}
   m_Layer: 0
   m_Name: RemoteControl
   m_TagString: Untagged
@@ -7865,6 +7921,26 @@ MonoBehaviour:
     remotePort: {fileID: 681930867}
     cutName: {fileID: 1813705224}
     delay: {fileID: 851583186}
+--- !u!114 &1669615364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1669615358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8f50a1d5c20a2448a8f8eb3ea51e9aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obsStart: {fileID: 38042404}
+  obsStop: {fileID: 278789663}
+  viconStart: {fileID: 2118196077}
+  viconStop: {fileID: 1945621217}
+  soundStart: {fileID: 1444238303}
+  soundStop: {fileID: 2139482441}
+  allStart: {fileID: 720288348}
+  allStop: {fileID: 1174702679}
 --- !u!1 &1695961690
 GameObject:
   m_ObjectHideFlags: 0
@@ -9191,6 +9267,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1669615364}
+        m_MethodName: OnStopButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1945621218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9903,6 +9990,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1669615364}
+        m_MethodName: OnViconStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2118196078
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10023,6 +10121,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1669615362}
         m_MethodName: SendStop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1669615364}
+        m_MethodName: OnStopButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

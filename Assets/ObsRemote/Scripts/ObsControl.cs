@@ -43,6 +43,8 @@ public class ObsControl : MonoBehaviour
             connectBtnText.text = "Connect To OBS";
             connectedUI.gameObject.SetActive(false);
         };
+
+        OnConnectButton();
     }
     private void OnDestroy()
     {
