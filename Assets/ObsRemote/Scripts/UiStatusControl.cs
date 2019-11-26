@@ -16,6 +16,7 @@ public class UiStatusControl : MonoBehaviour
 
     public Button allStart;
     public Button allStop;
+    public Button playBtn;
 
     public Button ready1;
     public Button ready2;
@@ -31,7 +32,7 @@ public class UiStatusControl : MonoBehaviour
                     soundStart,soundStop,
                     soundStart,soundStop,
                     allStart,allStop,
-                    ready1,ready2,
+                    ready1,ready2,playBtn,
                 });
             return allButtons;
         }
@@ -48,7 +49,7 @@ public class UiStatusControl : MonoBehaviour
                     soundStart,
                     soundStart,
                     allStart,
-                    ready1,ready2,
+                    ready1,ready2,playBtn,
                 });
             return allStartButtons;
         }

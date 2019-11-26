@@ -27,6 +27,7 @@ public class ObsControl : MonoBehaviour
     public Text connectBtnText;
 
     OBSWebsocket obs;
+    bool recording;
 
     // Start is called before the first frame update
     void Start()
@@ -75,13 +76,21 @@ public class ObsControl : MonoBehaviour
     public void OnStartRecordingButton()
     {
         if (obs.IsConnected)
+        {
             obs.StartRecording();
+            recording = true;
+        }
     }
     public void OnStopRecordingButton()
     {
+        if (!recording)
+            return;
         if (obs.IsConnected)
+        {
             obs.StopRecording();
-        RenameRecordedFile();
+            RenameRecordedFile();
+        }
+        recording = false;
     }
     public void RenameRecordedFile()
     {

@@ -64,7 +64,7 @@ public class ViconControl : MonoBehaviour
 
     public void SendReady()
     {
-        mobuCtrlData.signal = "ready";
+        mobuCtrlData.signal = MoBuControlData.Signal_READY;
         mobuCtrlData.value = SubjectName;
         SendText(JsonUtility.ToJson(mobuCtrlData), sender2);
     }
@@ -75,8 +75,8 @@ public class ViconControl : MonoBehaviour
         var now = System.DateTime.Now;
         SendText(CreateStartCaptureXML(), sender);
 
-        mobuCtrlData.signal = "player";
-        mobuCtrlData.value = "play";
+        mobuCtrlData.signal = MoBuControlData.Signal_PLAYER;
+        mobuCtrlData.value = MoBuControlData.Value_RECORD;
         SendText(JsonUtility.ToJson(mobuCtrlData), sender2);
     }
 
@@ -85,8 +85,15 @@ public class ViconControl : MonoBehaviour
         packetId = Random.Range(0, int.MaxValue);
         SendText(CreateStopCaptureXML(), sender);
 
-        mobuCtrlData.signal = "player";
-        mobuCtrlData.value = "stop";
+        mobuCtrlData.signal = MoBuControlData.Signal_PLAYER;
+        mobuCtrlData.value = MoBuControlData.Value_STOP;
+        SendText(JsonUtility.ToJson(mobuCtrlData), sender2);
+    }
+
+    public void SendMoBuPlay()
+    {
+        mobuCtrlData.signal = MoBuControlData.Signal_PLAYER;
+        mobuCtrlData.value = MoBuControlData.Value_PLAY;
         SendText(JsonUtility.ToJson(mobuCtrlData), sender2);
     }
 
@@ -164,13 +171,20 @@ public class ViconControl : MonoBehaviour
     public class MoBuControlData
     {
         /// <summary>
-        /// ready or player
+        /// ready / player
         /// </summary>
         public string signal = "ready";
         /// <summary>
         /// signal == "ready"のとき、TakeName。
-        /// signal == "player"のとき、play or stop
+        /// signal == "player"のとき、record / play / stop
         /// </summary>
         public string value = "take name";
+
+        public const string Signal_READY = "ready";
+        public const string Signal_PLAYER = "player";
+
+        public const string Value_RECORD = "record";
+        public const string Value_PLAY = "play";
+        public const string Value_STOP = "stop";
     }
 }
