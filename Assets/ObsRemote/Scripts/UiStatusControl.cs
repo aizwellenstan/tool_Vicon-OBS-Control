@@ -17,6 +17,9 @@ public class UiStatusControl : MonoBehaviour
     public Button allStart;
     public Button allStop;
 
+    public Button ready1;
+    public Button ready2;
+
     List<Button> AllButtons
     {
         get
@@ -28,12 +31,14 @@ public class UiStatusControl : MonoBehaviour
                     soundStart,soundStop,
                     soundStart,soundStop,
                     allStart,allStop,
+                    ready1,ready2,
                 });
             return allButtons;
         }
     }
     List<Button> allButtons;
-    List<Button> AllStartButtons { 
+    List<Button> AllStartButtons
+    {
         get
         {
             if (allStartButtons == null)
@@ -43,9 +48,11 @@ public class UiStatusControl : MonoBehaviour
                     soundStart,
                     soundStart,
                     allStart,
+                    ready1,ready2,
                 });
             return allStartButtons;
-        } }
+        }
+    }
     List<Button> allStartButtons;
 
     private void Start()

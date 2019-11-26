@@ -47,35 +47,47 @@ public class ViconControl : MonoBehaviour
         }
     }
 
-    public string SubjectName { get { return subjectNamePrefix; } set { subjectNamePrefix = value; } }
-    [SerializeField] string subjectNamePrefix = "ViconTest";
-    string subjectName;
+    public string SubjectName { get { return subjectName; } set { subjectName = value; } }
+    [SerializeField] string subjectName = "ViconTest";
     public string Notes { get { return notes; } set { notes = value; } }
     [SerializeField] string notes = "";
     public string Description { get { return description; } set { description = value; } }
     [SerializeField] string description = "";
     public string DbPath { get { return dbPath; } set { dbPath = value; } }
     [SerializeField] string dbPath = "D:\\ViconDB\\Reflap\\Project 2\\Gene\\Session 1\\";
-    public string Delay { get { return delay.ToString(); }  set { delay = int.Parse(value); } }
+    public string Delay { get { return delay.ToString(); } set { delay = int.Parse(value); } }
     [SerializeField] int delay = 0;
-    public bool UseSecondIP { get { return useSecondIP; } set { useSecondIP = value; } }
-    [SerializeField] bool useSecondIP;
 
     [SerializeField] int packetId = 0;
+
+    [SerializeField] MoBuControlData mobuCtrlData;
+
+    public void SendReady()
+    {
+        mobuCtrlData.signal = "ready";
+        mobuCtrlData.value = SubjectName;
+        SendText(JsonUtility.ToJson(mobuCtrlData), sender2);
+    }
 
     public void SendStartCapture()
     {
         packetId = Random.Range(0, int.MaxValue);
         var now = System.DateTime.Now;
-        //subjectName = $"{subjectNamePrefix}_{now.Year}_{now.Month.ToString("00")}{now.Day.ToString("00")}_{now.Hour.ToString("00")}{now.Minute.ToString("00")}";
-        subjectName = subjectNamePrefix;
-        SendText(CreateStartCaptureXML());
+        SendText(CreateStartCaptureXML(), sender);
+
+        mobuCtrlData.signal = "player";
+        mobuCtrlData.value = "play";
+        SendText(JsonUtility.ToJson(mobuCtrlData), sender2);
     }
 
     public void SendStopCapture()
     {
         packetId = Random.Range(0, int.MaxValue);
-        SendText(CreateStopCaptureXML());
+        SendText(CreateStopCaptureXML(), sender);
+
+        mobuCtrlData.signal = "player";
+        mobuCtrlData.value = "stop";
+        SendText(JsonUtility.ToJson(mobuCtrlData), sender2);
     }
 
 
@@ -89,7 +101,7 @@ public class ViconControl : MonoBehaviour
         doc.AppendChild(rootNode);
 
         var childNode = doc.CreateElement("Name");
-        childNode.SetAttribute("VALUE", subjectName);
+        childNode.SetAttribute("VALUE", SubjectName);
         rootNode.AppendChild(childNode);
 
         childNode = doc.CreateElement("Notes");
@@ -125,7 +137,7 @@ public class ViconControl : MonoBehaviour
         doc.AppendChild(rootNode);
 
         var childNode = doc.CreateElement("Name");
-        childNode.SetAttribute("VALUE", subjectName);
+        childNode.SetAttribute("VALUE", SubjectName);
         rootNode.AppendChild(childNode);
 
         childNode = doc.CreateElement("DatabasePath");
@@ -143,10 +155,22 @@ public class ViconControl : MonoBehaviour
         return doc.OuterXml;
     }
 
-    void SendText(string text)
+    void SendText(string text, UdpSender sender)
     {
         sender.Send(text);
-        if (useSecondIP)
-            sender2.Send(text);
+    }
+
+    [System.Serializable]
+    public class MoBuControlData
+    {
+        /// <summary>
+        /// ready or player
+        /// </summary>
+        public string signal = "ready";
+        /// <summary>
+        /// signal == "ready"のとき、TakeName。
+        /// signal == "player"のとき、play or stop
+        /// </summary>
+        public string value = "take name";
     }
 }

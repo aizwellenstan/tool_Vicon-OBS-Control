@@ -42,8 +42,6 @@ public class SaveLoadControl : MonoBehaviour
         public InputField description;
         public InputField dataBasePath;
         public InputField delay;
-
-        public Toggle useSecontIP;
     }
     [System.Serializable]
     public class SoundSettingsUI
@@ -74,8 +72,6 @@ public class SaveLoadControl : MonoBehaviour
         public string description;
         public string dataBasePath;
         public int delay;
-
-        public bool useSecontIP;
     }
     [System.Serializable]
     public class SoundSettings
@@ -112,30 +108,30 @@ public class SaveLoadControl : MonoBehaviour
         }
         ApplySettingsToUI();
     }
-    void ApplySettingsToUI() {
-        obsUis.remoteIP.text = obsSettings.remoteIP;
-        obsUis.remotePort.text = obsSettings.remotePort.ToString();
-        obsUis.password.text = obsSettings.password;
+    void ApplySettingsToUI()
+    {
+        obsControl.RemoteIP = obsUis.remoteIP.text = obsSettings.remoteIP;
+        obsControl.RemotePort = obsUis.remotePort.text = obsSettings.remotePort.ToString();
+        obsControl.Password = obsUis.password.text = obsSettings.password;
 
 
-        viconUis.remoteIP1.text = viconSettings.remoteIP1;
-        viconUis.remotePort1.text = viconSettings.remotePort1.ToString();
-        viconUis.remoteIP2.text = viconSettings.remoteIP2;
-        viconUis.remotePort2.text = viconSettings.remotePort2.ToString();
+        viconControl.RemoteIP = viconUis.remoteIP1.text = viconSettings.remoteIP1;
+        viconControl.RemotePort = viconUis.remotePort1.text = viconSettings.remotePort1.ToString();
+        viconControl.RemoteIP2 = viconUis.remoteIP2.text = viconSettings.remoteIP2;
+        viconControl.RemotePort2 = viconUis.remotePort2.text = viconSettings.remotePort2.ToString();
 
 
-        viconUis.subjectName.text = viconSettings.subjectName;
-        viconUis.notes.text = viconSettings.notes;
-        viconUis.description.text = viconSettings.description;
-        viconUis.dataBasePath.text = viconSettings.dataBasePath;
-        viconUis.delay.text = viconSettings.delay.ToString();
-        viconUis.useSecontIP.isOn = viconSettings.useSecontIP;
+        viconControl.SubjectName = viconUis.subjectName.text = viconSettings.subjectName;
+        viconControl.Notes = viconUis.notes.text = viconSettings.notes;
+        viconControl.Description = viconUis.description.text = viconSettings.description;
+        viconControl.DbPath = viconUis.dataBasePath.text = viconSettings.dataBasePath;
+        viconControl.Delay = viconUis.delay.text = viconSettings.delay.ToString();
 
 
-        soundUis.remoteIP.text = soundSettings.remoteIP;
-        soundUis.remotePort.text = soundSettings.remotePort.ToString();
-        soundUis.cutName.text = soundSettings.cutName;
-        soundUis.delay.text = soundSettings.delay.ToString();
+        soundControl.RemoteIP = soundUis.remoteIP.text = soundSettings.remoteIP;
+        soundControl.RemotePort = soundUis.remotePort.text = soundSettings.remotePort.ToString();
+        soundControl.CutName = soundUis.cutName.text = soundSettings.cutName;
+        soundControl.Delay = soundUis.delay.text = soundSettings.delay.ToString();
     }
     void SaveSettings()
     {
@@ -153,7 +149,6 @@ public class SaveLoadControl : MonoBehaviour
         viconSettings.description = viconControl.Description;
         viconSettings.dataBasePath = viconControl.DbPath;
         viconSettings.delay = int.Parse(viconControl.Delay);
-        viconSettings.useSecontIP = viconControl.UseSecondIP;
 
         soundSettings.remoteIP = soundControl.RemoteIP;
         soundSettings.remotePort = int.Parse(soundControl.RemotePort);
