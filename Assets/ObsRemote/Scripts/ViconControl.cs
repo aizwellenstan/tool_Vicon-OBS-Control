@@ -67,7 +67,8 @@ public class ViconControl : MonoBehaviour
     {
         packetId = Random.Range(0, int.MaxValue);
         var now = System.DateTime.Now;
-        subjectName = $"{subjectNamePrefix}_{now.Year}_{now.Month.ToString("00")}{now.Day.ToString("00")}_{now.Hour.ToString("00")}{now.Minute.ToString("00")}";
+        //subjectName = $"{subjectNamePrefix}_{now.Year}_{now.Month.ToString("00")}{now.Day.ToString("00")}_{now.Hour.ToString("00")}{now.Minute.ToString("00")}";
+        subjectName = subjectNamePrefix;
         SendText(CreateStartCaptureXML());
     }
 
