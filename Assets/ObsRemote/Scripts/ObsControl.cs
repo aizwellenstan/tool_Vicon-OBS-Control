@@ -91,7 +91,8 @@ public class ObsControl : MonoBehaviour
         var latestFile = files.OrderBy(f => File.GetCreationTime(f)).Last();
         var directoryName = Path.GetDirectoryName(latestFile);
         var fileName = Path.GetFileName(latestFile);
-        fileName = viconControl.SubjectName + fileName;
+        var extention = Path.GetExtension(fileName);
+        fileName = viconControl.SubjectName + extention;
         File.Move(latestFile, Path.Combine(directoryName, fileName));
     }
 }
